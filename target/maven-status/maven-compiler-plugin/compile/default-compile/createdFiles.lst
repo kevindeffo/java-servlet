@@ -1,2 +1,5 @@
+com\mycompany\mavenzebproject1\controller\PayerLivreServlet.class
 com\mycompany\mavenzebproject1\controller\HelloServlet.class
+com\mycompany\mavenzebproject1\controller\SelectionLivreServlet.class
+com\mycompany\mavenzebproject1\controller\Login.class
 com\mycompany\mavenzebproject1\controller\Somme.class

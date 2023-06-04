@@ -11,17 +11,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author GAMING
  */
-@WebServlet(name = "Login", urlPatterns = {"/login"})
-public class Login extends HttpServlet {
+@WebServlet(name = "PayerLivreServlet", urlPatterns = {"/payer-livre"})
+public class PayerLivreServlet extends HttpServlet {
 
-   
-
-  
+    
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -34,11 +33,14 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
-        
+        HttpSession session = request.getSession();
+        String numeroCarte = request.getParameter("numeroCarte");
         PrintWriter out = response.getWriter();
-        out.print("<html><body>Athentifie avec succes avec les identifiants: " + login + " "+ password +"</body></html>");
+        String identifiantLivre = (String) session.getAttribute("identifiantLivre");
+                
+        out.print("<html><body>Paiement effectue avec le numero de carte "+ numeroCarte + "<br>");
+        out.print("Le livre payer est celui avec l'identifiant "+ identifiantLivre + "<br>");
+        out.print("</body></html>");
     }
 
 }

@@ -11,20 +11,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author GAMING
  */
-@WebServlet(name = "Login", urlPatterns = {"/login"})
-public class Login extends HttpServlet {
-
-   
+@WebServlet(name = "SelectionLivreServlet", urlPatterns = {"/selection-livre"})
+public class SelectionLivreServlet extends HttpServlet {
 
   
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -32,13 +32,19 @@ public class Login extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
-        
+        HttpSession session = request.getSession();
+        response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.print("<html><body>Athentifie avec succes avec les identifiants: " + login + " "+ password +"</body></html>");
+        String identifiantLivre = request.getParameter("id");
+        session.setAttribute("identifiantLivre", identifiantLivre);
+        
+        
+        out.print("<html><body>Merci d'avoir choisir le livre "+ identifiantLivre + "<br>");
+        out.print("<a href=\"payer-livre.html\"> Cliquez ici pour payer</a></body></html>");
     }
+
+   
 
 }
