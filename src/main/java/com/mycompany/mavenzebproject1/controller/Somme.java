@@ -4,7 +4,6 @@
  */
 package com.mycompany.mavenzebproject1.controller;
 
-import com.mycompany.firstappcore.Person;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,9 +16,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author GAMING
  */
-@WebServlet(name = "HelloServlet", urlPatterns = {"/hello"})
-public class HelloServlet extends HttpServlet {
+@WebServlet(name = "Somme", urlPatterns = {"/somme"})
+public class Somme extends HttpServlet {
 
+   
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -31,10 +33,14 @@ public class HelloServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        response.setContentType("text/html;charset=UTF-8");
-        Person person = new Person("kevin", "Deffo");
-        out.print("<html><body>Bonjour " + person.getFullName() +" <body><html>");
+        
+        String nombre1 = request.getParameter("nombre1");
+        String nombre2 = request.getParameter("nombre2");
+        int somme = Integer.parseInt(nombre1) + Integer.parseInt(nombre2);
+        out.print("<html><body><body> La somme des deux nombres fournies est: " + somme +"<html>");
     }
+
 
 }
