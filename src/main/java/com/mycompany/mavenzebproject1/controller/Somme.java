@@ -6,6 +6,7 @@ package com.mycompany.mavenzebproject1.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,8 +39,13 @@ public class Somme extends HttpServlet {
         
         String nombre1 = request.getParameter("nombre1");
         String nombre2 = request.getParameter("nombre2");
-        int somme = Integer.parseInt(nombre1) + Integer.parseInt(nombre2);
-        out.print("<html><body><body> La somme des deux nombres fournies est: " + somme +"<html>");
+        try{
+            int somme = Integer.parseInt(nombre1) + Integer.parseInt(nombre2);
+            out.print("<html><body><body> La somme des deux nombres fournies est: " + somme +"<html>");
+        }catch(NumberFormatException e){
+            RequestDispatcher disp = request.getRequestDispatcher("/unexpected-error.html");
+            disp.forward(request, response);
+        }
     }
 
 
